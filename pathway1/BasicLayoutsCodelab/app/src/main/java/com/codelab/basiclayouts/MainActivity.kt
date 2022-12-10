@@ -28,6 +28,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Spa
 import java.util.*
 
 class MainActivity : ComponentActivity() {
@@ -169,13 +171,13 @@ fun HomeSection(
     }
 }
 
-// Step: Home screen - Scrolling
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
     Column(
         modifier
             .verticalScroll(rememberScrollState())
-            .padding(vertical = 16.dp)) {
+            .padding(vertical = 16.dp)
+    ) {
         SearchBar(Modifier.padding(horizontal = 16.dp))
         HomeSection(title = R.string.align_your_body) {
             AlignYourBodyRow()
@@ -184,13 +186,43 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             FavoriteCollectionsGrid()
         }
     }
-    // Implement composable here
 }
 
-// Step: Bottom navigation - Material
 @Composable
 private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
-    // Implement composable here
+    BottomNavigation(
+        backgroundColor = MaterialTheme.colors.background,
+        modifier = modifier
+    ) {
+        BottomNavigationItem(
+            selected = true,
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Spa,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(stringResource(id = R.string.bottom_navigation_home))
+            },
+            onClick = { }
+        )
+
+        BottomNavigationItem(
+            selected = false,
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(stringResource(id = R.string.bottom_navigation_profile))
+            },
+            onClick = { }
+        )
+
+    }
 }
 
 // Step: MySoothe App - Scaffold
